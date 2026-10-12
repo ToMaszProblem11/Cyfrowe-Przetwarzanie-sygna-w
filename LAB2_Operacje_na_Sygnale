@@ -1,0 +1,17 @@
+clear;
+clc;
+close all;
+
+[y,fs]=audioread('odliczanie.wav');
+plot(y)
+
+%obliczyć wartość średnią minimalną wariancję, histogram
+
+max(y)
+min(y)
+mean(y)
+std(y)
+var(y)
+
+figure;
+hist(y,10);
