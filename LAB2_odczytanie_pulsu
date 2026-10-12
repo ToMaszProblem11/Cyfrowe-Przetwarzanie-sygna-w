@@ -1,0 +1,16 @@
+clear;
+clc;
+close all;
+
+load BVP_64Hz.mat;
+s=BVP_64Hz*(-1);
+
+plot(s)
+findpeaks(s,'MinPeakDistance',44)
+[peak,locs]=findpeaks(s,'MinPeakDistance',44)
+
+sr=mean(diff(locs));
+T=(64/sr)*60
+
+% wybrać kiedy maksima i minima obliczenia czasu między maksimami np 
+%obliczyć heart rate
