@@ -3,6 +3,8 @@ clc;
 close all;
 
 [y,fs]=audioread('odliczanie.wav');
+szum=rand(147073,1)
+y=y+2.3*szum;
 plot(y)
 
 %obliczyć wartość średnią minimalną wariancję, histogram
@@ -12,6 +14,9 @@ min(y)
 mean(y)
 std(y)
 var(y)
+skewness(y)
+kurtosis(y)
 
 figure;
-hist(y,10);
+hist(y,500);
+grid on;
