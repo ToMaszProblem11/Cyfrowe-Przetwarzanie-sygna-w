@@ -1,0 +1,43 @@
+
+clear;
+close all;
+clc;
+
+%GENEROWANIE SYGNAŁU PROSOKĄTNEGO
+%{
+fs=1000; 
+T=1/fs; 
+t=0:T:1-T; 
+y1=1*sin(2*pi*2*t);
+y3=(1/3)*sin(2*pi*6*t);
+y5=(1/5)*sin(2*pi*10*t);
+y7=(1/7)*sin(2*pi*14*t);
+y9=(1/9)*sin(2*pi*18*t);
+y11=(1/11)*sin(2*pi*22*t);
+
+Y=(4/pi)*(y1+y3+y5+y7+y9+y11);
+figure; 
+plot(Y,'-o')
+%}
+
+% WERSJA TRUDNIEJSZA
+fs=1000;
+T=1/fs;
+Tc=1;           %czas trwania s
+t=0:1/fs:Tc-T;  %wektor czasu
+f0=5;           %częstotliwość podstawowa fali prostokątnej
+N=151;          %liczba harmonicznych(nieparzystych)
+
+square_approx = zeros(size(t));
+for k = 1:2:N;
+    square_approx = square_approx + (1/k) * sin(2*pi*k*f0*t);
+end
+figure;
+plot(square_approx,'-o');
+grid on;
+axis tight;
+
+
+
+% Szybkie Przekształcenie fouriera, parametry funkcji FFT w Matlabie, jak
+% działa ta funkcja w matlabie
