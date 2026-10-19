@@ -1,0 +1,39 @@
+clc;
+clear;
+close all;
+
+fs=256;
+f=21;
+T=1/fs;
+t=0:T:1-T;
+
+y=sin(2*pi*f*t) + 2*sin(2*pi*37.2*t)+ 3*sin(2*pi*11*t+pi/2)+ 1*sin(2*pi*19*t-pi/3)+ 0.1*sin(2*pi*6*t);
+
+figure;
+plot(y);
+grid on;
+axis tight;
+xlabel('czas [nr próbki]');
+ylabel('amplituda [v]');
+
+fff=abs(fft(y));
+ang=angle(fft(y));
+ang=ang(1:256);
+fff=fff(1:(fs/2));
+fff=fff./(fs/2);
+fff(1)=fff(1)/2;
+f=0:1:255;
+
+figure;
+bar(fff);
+grid on;
+axis tight;
+xlabel('częstotliwość [Hz]');
+ylabel('amplituda [v]');
+
+figure;
+bar(f,ang);
+xlabel('częstotliwość [Hz]');
+ylabel('Faza');
+grid on;
+axis tight;
