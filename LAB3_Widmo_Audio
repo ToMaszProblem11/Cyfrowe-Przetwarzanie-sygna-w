@@ -1,0 +1,32 @@
+%odliczanie wav
+%wybrać pierwszą sekundę sygnału
+%wykreślić pierwszą sekundę tego syngału
+
+clc;
+clear;
+close all;
+
+[y,fs]=audioread('odliczanie.wav');
+
+figure;
+y=y(1:fs);
+plot(y);
+grid on;
+axis tight;
+xlabel('czas [nr próbki]');
+ylabel('amplituda [v]');
+
+fff=abs(fft(y));
+
+fff=fff(1:fs/2);
+fff=fff./fs/2;
+fff(1)=fff(1)/2;
+f=0:1:fs/2-1;
+
+figure;
+bar(f,fff);
+grid on;
+% axis tight;
+xlabel('częstotliwość [Hz]');
+ylabel('amplituda [v]');
+
