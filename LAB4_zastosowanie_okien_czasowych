@@ -1,0 +1,50 @@
+% gen syg o jakimś czasie
+% generowanie widma fft
+% obliczenie rozdzielczości
+
+clear;
+clc;
+close all;
+
+N=512;
+
+fs=512;
+T=1/fs;
+t=0:T:N*T-T
+
+y=sin(2*pi*10.5*t)+sin(2*pi*13.5*t);
+
+plot(t,y);
+fff=abs(fft(y));
+fff=fff./(N/2)
+fff(1)=fff(1)/2;
+fff=fff(1:((N/2)-1));
+df=fs/N
+f=0:df:(fs)/2-df;
+df=fs/N
+f = 0 : df : (fs/2 - 2*df);
+
+figure;
+bar(f,fff);
+grid on; axis tight; box on; xlabel('częstotliwość [Hz]'); ylabel('amplituda [V]');
+
+w=window(@hamming,512);
+figure
+plot(w,'-o');
+grid on; axis tight;
+
+yw=y.*w';
+figure
+plot(yw,'-o');
+grid on; axis tight;
+
+fff=abs(fft(yw));
+fff=fff./(N/2)
+fff(1)=fff(1)/2;
+fff=fff(1:((N/2)-1));
+df=fs/N
+f = 0 : df : (fs/2 - 2*df);
+
+figure;
+bar(f,fff);
+grid on; axis tight; box on; xlabel('częstotliwość [Hz]'); ylabel('amplituda [V]');
