@@ -1,0 +1,42 @@
+clc;
+clear;
+close all;
+
+fs = 512;          
+T = 1/fs;          
+
+t = 0:T:5-T;     
+t1= 0:T:T-1;               
+y=[sin(2*pi*5*t) sin(2*pi*20*t) sin(2*pi*10*[t t])];
+
+figure;
+plot(y);
+xlabel('Czas [s]');
+ylabel('Amplituda');
+grid on;
+axis tight;
+
+figure;
+spectrogram(y,128,64,fs,fs,'yaxis');
+colormap(hsv)
+view([1 1 1])
+shading interp
+
+figure;
+spectrogram(y,256,128,fs,fs,'yaxis');
+colormap(summer)
+view([1 1 1])
+shading interp
+
+figure;
+spectrogram(y,512,256,fs,fs,'yaxis');
+colormap(winter)
+view([1 1 1])
+shading interp
+
+figure;
+spectrogram(y,1024,512,fs,fs,'yaxis');
+colormap(jet)
+view([1 1 1])
+shading interp
+
