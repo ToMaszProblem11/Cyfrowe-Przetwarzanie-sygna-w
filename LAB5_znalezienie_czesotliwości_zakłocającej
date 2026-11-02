@@ -1,0 +1,14 @@
+clc;
+clear;
+close all;
+
+[y,fs]=audioread('odliczanie_A.wav');
+
+
+figure;
+spectrogram(y,4096,2048,fs,fs,'yaxis');
+colormap(jet)
+shading interp
+% view([1 1 1]);
+
+%jest to 500 hz
