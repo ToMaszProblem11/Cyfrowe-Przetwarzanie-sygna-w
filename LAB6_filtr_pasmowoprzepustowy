@@ -1,0 +1,27 @@
+clear;
+clc;
+close all;
+
+N=512;
+
+fs=512;
+T=1/fs;
+t=0:T:N*T-T
+czas=N/fs;
+
+y=sin(2*pi*5*t)+sin(2*pi*20*t)+sin(2*pi*50*t);
+;
+figure;
+[b]=fir1(125, [2*15/fs, 2*25/fs], 'bandpass');
+freqz(b,1,fs,fs);
+
+figure;
+stem(b)
+
+ys=filter(b,1,y);
+figure;
+hold on;
+plot(y);
+axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda')
+plot(ys,'or');
+axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda');
