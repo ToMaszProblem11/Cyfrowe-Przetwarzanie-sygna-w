@@ -10,9 +10,7 @@ t=0:T:N*T-T
 czas=N/fs;
 
 y=sin(2*pi*5*t)+sin(2*pi*20*t);
-figure;
-plot(y);
-axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda');
+;
 figure;
 [b]=fir1(128,[2*10/fs]);
 freqz(b,1,fs,fs);
@@ -22,5 +20,8 @@ stem(b)
 
 ys=filter(b,1,y);
 figure;
+hold on;
+plot(y);
+axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda')
 plot(ys,'or');
 axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda');
