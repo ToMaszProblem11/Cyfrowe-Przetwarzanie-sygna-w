@@ -1,0 +1,26 @@
+clear;
+clc;
+close all;
+
+[y,fs]=audioread('odliczanie_A.wav');
+figure
+plot(y);
+
+figure;
+spectrogram(y,500,250,fs,fs,'yaxis');
+colormap jet;
+[b,a]=butter(2,[2*450/fs, 2*550/fs], 'stop');
+
+figure;
+freqz(b,a,fs,fs);
+ys=filter(b,a,y);
+isstable(b,a)
+
+plot(ys);
+figure
+spectrogram(ys,500,250,fs,fs,'yaxis');
+
+figure
+hold on;
+plot(y);
+plot(ys);
