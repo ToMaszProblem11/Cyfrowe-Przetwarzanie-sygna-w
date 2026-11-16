@@ -1,0 +1,28 @@
+clear;
+clc;
+close all;
+
+N=512;
+
+fs=512;
+T=1/fs;
+t=0:T:N*T-T
+czas=N/fs;
+
+y=sin(2*pi*5*t)+sin(2*pi*20*t)+sin(2*pi*50*t);
+;
+figure;
+[b,a]=butter(10,[2*17/fs],['high']);
+freqz(b,a,fs,fs);
+
+% figure;
+% stem(b)
+
+ys=filter(b,a,y);
+isstable(b,a)
+figure;
+hold on;
+plot(y,'g');
+axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda')
+plot(ys,'or');
+axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda');
