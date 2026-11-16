@@ -12,7 +12,7 @@ czas=N/fs;
 y=sin(2*pi*5*t)+sin(2*pi*20*t)+sin(2*pi*50*t);
 ;
 figure;
-[b,a]=butter(4,[2*19/fs, 2*21/fs], 'stop');
+[b,a]=butter(5,[2*15/fs, 2*25/fs], 'bandpass');
 freqz(b,a,fs,fs);
 
 % figure;
@@ -24,5 +24,5 @@ figure;
 hold on;
 plot(y,'g');
 axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda')
-plot(ys,'or');
+plot(ys);
 axis tight; grid on; xlabel('czas [próbki]'); ylabel('amplituda');
